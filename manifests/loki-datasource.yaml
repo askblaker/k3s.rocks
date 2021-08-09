@@ -1,0 +1,19 @@
+# This should be installed by default by the loki helm chart
+# But it is here just for reference
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: grafana-datasource-loki
+  labels:
+    grafana_datasource: "true"
+
+data:
+  datasource.yml: |-
+    apiVersion: 1
+    datasources:
+    - name: Loki
+      type: loki
+      orgId: 1
+      access: proxy
+      url: http://loki:3100
+      basicAuth: false

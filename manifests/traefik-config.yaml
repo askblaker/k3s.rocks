@@ -1,0 +1,20 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    dashboard:
+      enabled: true
+    ports:
+      web:
+        redirectTo: websecure
+    logs:
+      level: WARNING
+      access:
+        enabled: true
+    additionalArguments:
+      - "--metrics.prometheus=true"
+#    deployment:    
+#    replicas: 1 Default value, just here for reference

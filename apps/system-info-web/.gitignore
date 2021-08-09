@@ -1,0 +1,10 @@
+**/__pycache__
+*.pyc
+.vscode
+.env
+**/.minio.sys/
+test/
+test-data/weeks
+export/
+.coverage
+htmlcov

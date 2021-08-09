@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-ui
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: registry-ui
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry-ui
+spec:
+  selector:
+    matchLabels:
+      app: registry-ui
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: registry-ui
+    spec:
+      containers:
+      - name: registry-ui
+        image: joxit/docker-registry-ui:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: SINGLE_REGISTRY
+          value: "true"
+        - name: REGISTRY_TITLE
+          value: "My container registry"
+        - name: REGISTRY_URL
+          value: "https://registry.${DOMAIN}"
+        - name: NGINX_PROXY_PASS_URL
+          value: "https://registry.${DOMAIN}"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: registry-ui-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # use this if you want basic auth on the UI
+    # you have to use the registry credential any way
+    # traefik.ingress.kubernetes.io/router.middlewares: default-registry-basic-auth@kubernetescrd
+spec:
+  rules:
+  - host: registry-ui.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: registry-ui
+            port:
+              number: 80
+  tls:
+    - secretName: registry-ui-tls
+      hosts:
+        - registry-ui.${DOMAIN}

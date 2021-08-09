@@ -1,0 +1,7 @@
+**/__pycache__
+*.pyc
+**/.minio.sys/
+/test
+/test-data
+htmlcov
+.coverage

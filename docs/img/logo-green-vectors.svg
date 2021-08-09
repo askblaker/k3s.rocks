@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg6"
+   version="1.1"
+   viewBox="0 0 486.50849 236.74578"
+   height="236.74577"
+   width="486.50848"
+   sodipodi:docname="logo-green-vectors.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview28028"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.8196963"
+     inkscape:cx="341.54051"
+     inkscape:cy="179.42554"
+     inkscape:window-width="3200"
+     inkscape:window-height="1721"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="text912" />
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <rect
+     y="0"
+     x="0"
+     height="236.74577"
+     width="486.50848"
+     id="rect933"
+     style="opacity:0.98000004;fill:none;fill-opacity:1;stroke-width:0.93944699" />
+  <path
+     style="fill:none"
+     id="path2"
+     d="m 221.5952,65.081196 h 24 v 24 h -24 z" />
+  <g
+     id="text912"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#4caf50;fill-opacity:1;stroke:none"
+     aria-label="Docker Swarm Rocks"
+     transform="translate(-6.0449647)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:30.5409px;line-height:1.25;font-family:sans-serif;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:0.763522"
+       x="247.93755"
+       y="187.26176"
+       id="text28948"><tspan
+         sodipodi:role="line"
+         x="247.93755"
+         y="187.26176"
+         id="tspan55755"
+         style="text-align:center;text-anchor:middle;stroke-width:0.763522">K3S Rocks</tspan></text>
+  </g>
+  <path
+     id="path4-1"
+     d="m 241.71316,44.935434 c -27.15409,0 -49.1922,22.038108 -49.1922,49.192205 0,27.154101 22.03811,49.192211 49.1922,49.192211 27.1541,0 49.1922,-22.03811 49.1922,-49.192211 0,-27.154097 -22.0381,-49.192205 -49.1922,-49.192205 z m 0,10.247292 c 10.87148,0 19.67689,8.805405 19.67689,19.676882 h 2.4596 c 6.78853,0 12.29805,5.509522 12.29805,12.298052 0,6.788525 -5.50952,12.298053 -12.29805,12.298053 h -10.48217 l -12.12509,12.173147 h 20.44552 l -37.68203,21.76179 17.11162,-17.11159 h -15.61277 l 9.02174,-16.823347 h -12.49018 c -8.16591,0 -14.75767,-6.591762 -14.75767,-14.757663 0,-8.165911 6.59176,-14.757662 14.75767,-14.757662 l 0.69178,0.04821 c 2.16446,-8.510276 9.78615,-14.805722 18.98509,-14.805722 z"
+     sodipodi:nodetypes="sssssscssscccccccssccs"
+     style="fill:#4caf50;fill-opacity:1;stroke-width:4.91922" />
+</svg>

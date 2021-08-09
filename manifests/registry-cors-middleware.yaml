@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: registry-cors
+spec:
+  headers:
+    accessControlAllowMethods:
+      - "GET"
+      - "OPTIONS"
+      - "HEAD"
+    accessControlAllowOriginList:
+      - "https://registry-ui.${DOMAIN}"
+    accessControlAllowCredentials: true
+    accessControlMaxAge: 100
+    addVaryHeader: true
+    accessControlAllowHeaders:
+      - "Authorization"
+      - "Accept"

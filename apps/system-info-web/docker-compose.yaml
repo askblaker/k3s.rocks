@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  system-info-web:
+    container_name: system-info-web
+    image: system-info-web
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - "./app:/app"
+      
+      

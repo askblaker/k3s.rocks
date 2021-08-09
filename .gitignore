@@ -1,0 +1,9 @@
+site
+.netlify
+.vscode
+.pytest_cache
+__pycache__
+*.pyc
+.env
+.coverage
+htmlcov

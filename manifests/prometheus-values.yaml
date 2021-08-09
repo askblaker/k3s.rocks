@@ -1,0 +1,53 @@
+# Disable etcd monitoring. See https://github.com/cablespaghetti/k3s-monitoring/issues/4
+kubeEtcd:
+  enabled: false
+
+# Disable kube-controller-manager and kube-scheduler monitoring. See https://github.com/cablespaghetti/k3s-monitoring/issues/2
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    retention: 3d
+
+    # storageSpec:
+    #  volumeClaimTemplate:
+    #    metadata:
+    #      name: prometheus-longhorn-pvc
+    #    spec:
+    #      accessModes:
+    #        - ReadWriteOnce
+    #      storageClassName: longhorn
+    #      resources:
+    #        requests:
+    #          storage: 2Gi
+
+grafana:
+  plugins:
+  - grafana-piechart-panel
+  enabled: true
+  grafana.ini:
+    users:
+      viewers_can_edit: true
+    auth:
+      disable_login_form: true
+      disable_signout_menu: true
+    auth.anonymous:
+      enabled: true
+      org_role: Admin
+    auth.basic:
+      enabled: false
+
+  # persistence:
+  #  enabled: true
+  #  type: pvc
+  #  storageClassName: longhorn
+  #  accessModes:
+  #  - ReadWriteOnce
+  #  size: 4Gi
+  #  finalizers:
+  #  - kubernetes.io/pvc-protection
+  # ALTERNATIVELY IF YOU HAVE AN EXISTING CLAME YOU WISH TO USE/REUSE
+  # existingClaim: prom-grafana

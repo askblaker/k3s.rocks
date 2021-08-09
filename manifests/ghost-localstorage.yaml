@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ghost
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 2368
+  selector:
+    app: ghost
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost
+spec:
+  selector:
+    matchLabels:
+      app: ghost
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ghost
+    spec:
+      containers:
+      - name: ghost
+        image: ghost
+        ports:
+        - containerPort: 2368
+        volumeMounts:
+        - name: my-ghost-volume
+          mountPath: /var/lib/ghost/content
+      volumes:
+      - name: my-ghost-volume
+        persistentVolumeClaim:
+          claimName: ghost-pvc
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ghost-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: ghost.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ghost
+            port:
+              number: 80
+  tls:
+    - secretName: ghost-tls
+      hosts:
+        - ghost.${DOMAIN}
