@@ -31,6 +31,9 @@ data:
 EOF
 ```
 
+## Configure the nodes to use the local registry
+**Note: ** This has to be done on every node that will pull containers 
+
 ```bash
 cat <<EOF > /etc/rancher/k3s/registries.yaml
 mirrors:

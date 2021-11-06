@@ -45,24 +45,8 @@ apt install wireguard -y
 ## Get manifests / repo
 ** Note: ** You can just copy paste these manifests as you please, but to follow along with this guide, it is conveniant to have them on disk. 
 
-### Options
-Download any way you prefer
-
-#### 1. wget and untar specific release  
 ```bash
-wget https://github.com/askblaker/k3s.rocks/archive/refs/tags/<insert desired version>.tar.gz -O - | tar -xz
-```
-
-#### 2. wget and unzip specific release
-```bash
-# if you do not already have unzip
-apt install unzip -y
-wget https://github.com/askblaker/k3s.rocks/archive/refs/heads/main.zip && unzip main.zip
-```
-
-#### 3. Git clone
-```bash
-git clone git@github.com:askblaker/k3s.rocks.git
+git clone https://github.com/askblaker/k3s.rocks.git
 ```
 
 ## Get tools
@@ -87,6 +71,11 @@ The first step is to configure one (or more) manager nodes.
 **Note:** Remember to have your environment variables set!
 
 Not that we also alter the default deployment of the traefik ingress controller, see [helm chart values](https://github.com/traefik/traefik-helm-chart/blob/v9.18.3/traefik/values.yaml) for all the other options. Even K3S internally uses a helmchartconfig, changes can be applied with vanilla kubectl as we do here.
+
+### Goto manifests folder
+```bash
+cd k3s.rocks/manifests/
+```
 
 ### Install k3s
 ```bash
@@ -144,6 +133,3 @@ m2     Ready    control-plane,etcd,master   17s     v1.20.6+k3s1
 That's it. You have a single or multi node kubernetes cluster set up.
 
 Continue with the guide to see how to set up some sample applications, basic auth, HTTPS etc.
-
-**Note:** Remember to cd into the __manifests__ folder before running the examples.
-
