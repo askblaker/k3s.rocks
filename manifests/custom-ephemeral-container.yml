@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: $APPNAME
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 2368
+  selector:
+    app: $APPNAME
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $APPNAME-deployment 
+spec:
+  selector:
+    matchLabels:
+      app: $APPNAME
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: $APPNAME
+    spec:
+      containers:
+      - name: $APPNAME
+        image: registry.$DOMAIN/$APPNAME:latest
+        ports:
+        - containerPort: $PORT
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: $APPNAME-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: $APP.${DOMAIN}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: $APPNAME
+            port:
+              number: 80
+  tls:
+    - secretName: $APPNAME-tls
+      hosts:
+        - $APPNAME.${DOMAIN}
