@@ -2,13 +2,13 @@ site_name: K3S Rocks
 site_description: K3S ideas and tools
 
 theme:
-    name: 'material'
-    custom_dir: overrides/
-    palette:
-      primary: 'green'
-      accent: 'red'
-    logo: 'img/icon-white.svg'
-    favicon: 'img/favicon.png'
+  name: "material"
+  custom_dir: overrides/
+  palette:
+    primary: "green"
+    accent: "red"
+  logo: "img/icon-white.svg"
+  favicon: "img/favicon.png"
 
 extra:
   analytics:
@@ -19,19 +19,20 @@ repo_url: https://github.com/askblaker/k3s.rocks
 edit_uri: ""
 
 nav:
-    - K3S Rocks: index.md
-    - install-setup.md
-    - https-cert-manager-letsencrypt.md
-    - traefik-dashboard.md
-    - basic-auth.md
-    - auto-healing.md
-    - localstorage-longhorn.md
-    - private-registry.md
-    - metrics.md
-    - logging.md
-    - argocd.md
-    - faq.md
-    - release-notes.md
+  - K3S Rocks: index.md
+  - install-setup.md
+  - https-cert-manager-letsencrypt.md
+  - traefik-dashboard.md
+  - basic-auth.md
+  - auto-healing.md
+  - localstorage-longhorn.md
+  - private-registry.md
+  - metrics.md
+  - logging.md
+  - argocd.md
+  - faq.md
+  - keel.md
+  - release-notes.md
 
 markdown_extensions:
   - markdown.extensions.codehilite:

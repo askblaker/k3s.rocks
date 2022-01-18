@@ -1,11 +1,12 @@
 # Keel
-![Keel.sh](https://keel.sh/)
 
-Sometimes(most) you want to control deployments using versions. But sometimes(often) you want to just have the latest version.
+[Keel.sh](https://keel.sh/)
 
-Keel makes this process easier, just add some annotations to your deployment, and it makes sure to update it if the image has changed.
+Often you want to control deployments using versions. But sometimes you want to just have the latest version. You can use keel to help automate both.
 
-It may also require adding an ImagePullSecret and ImagePullPolicy: Always
+Just add some annotations to your deployment, and it makes sure to update it if the image has changed. The example below is using a fixed `latest` tag.
+
+Note that it may also require adding an `ImagePullSecret` to access the registry and a `ImagePullPolicy: Always` to the yaml to trigger the image pull.
 
 ```yaml
 apiVersion: apps/v1
@@ -27,11 +28,11 @@ spec:
         app: my-software
     spec:
       imagePullSecrets:
-      - name: regcred
+        - name: regcred
       containers:
-      - name: my-software
-        image: custom-registry.com/my-software:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 4578
+        - name: my-software
+          image: custom-registry.com/my-software:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4578
 ```
