@@ -30,8 +30,8 @@ nav:
   - metrics.md
   - logging.md
   - argocd.md
-  - faq.md
   - keel.md
+  - faq.md
   - release-notes.md
 
 markdown_extensions:
