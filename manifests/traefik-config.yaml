@@ -5,6 +5,9 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
+    deploy:
+      kind: DaemonSet
+    hostNetwork: true
     dashboard:
       enabled: true
     ports:
@@ -16,5 +19,7 @@ spec:
         enabled: true
     additionalArguments:
       - "--metrics.prometheus=true"
-#    deployment:    
-#    replicas: 1 Default value, just here for reference
+
+# See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
+# The deploy.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for, and can be omitted if this is
+# not needed.
