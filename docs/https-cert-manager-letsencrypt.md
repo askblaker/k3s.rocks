@@ -29,6 +29,13 @@ cert-manager-webhook-6bdffc7c9d-swgdj      1/1     Running   0          42s
 cat letsencrypt-prod.yaml | envsubst | kubectl apply -f -
 ```
 
+<details>
+<summary>letsencrypt-prod.yaml</summary>
+```
+--8<-- "./manifests/letsencrypt-prod.yaml"
+```
+</details>
+
 ### Echo Test
 
 Apply deployment, service and ingress, using the commands below. This will deploy and expose a docker container on a subdomain.
