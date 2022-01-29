@@ -26,10 +26,9 @@ export DOMAIN=dog.example.com
 export EMAIL=name@example.com
 ```
 
-- Set up the server `hostname` if necessary:
+- Set up the server `hostname` if it is not provided. It is recommended that each node has a unique hostname.
 
 ```bash
-# Set up the server hostname
 echo $USE_HOSTNAME > /etc/hostname
 hostname -F /etc/hostname
 ```
