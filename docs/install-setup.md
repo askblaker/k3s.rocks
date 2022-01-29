@@ -39,10 +39,9 @@ hostname -F /etc/hostname
 
 **Note**: If you are not a `root` user, you might need to add `sudo` to these commands. The shell will tell you when you don't have enough permissions. Note that `sudo` does not preserve environment variables by default, but this can be enabled via the `-E` flag.
 
-- Update packages:
+- Install the latest updates, open-iscsi for longhorn and wireguard:
 
 ```bash
-# Install the latest updates, open-iscsi for longhorn and wireguard
 apt update && \
 apt upgrade -y && \
 apt install open-iscsi -y && \
