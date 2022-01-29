@@ -105,7 +105,11 @@ cat traefik-config.yaml | envsubst | kubectl apply -f -
 </details>
 
 ** Note ** :
-The traefik-config.yaml file could also be moved to `/var/lib/rancher/k3s/server/manifests/traefik-config.yaml` on one of the master nodes. K3S will run these files automatically.
+The traefik-config.yaml file could also be moved to `/var/lib/rancher/k3s/server/manifests/traefik-config.yaml` on one of the master nodes. K3S will run these files automatically. But this is optional, and you might be doing this remotely.
+
+```bash
+mv traefik-config.yaml /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+```
 
 ### Add longhorn (optional)
 
