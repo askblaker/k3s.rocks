@@ -29,6 +29,10 @@ export EMAIL=name@example.com
 - Set up the server `hostname` if it is not provided. It is recommended that each node has a unique hostname.
 
 ```bash
+export USE_HOSTNAME=my-new-hostname
+```
+
+```bash
 echo $USE_HOSTNAME > /etc/hostname
 hostname -F /etc/hostname
 ```
