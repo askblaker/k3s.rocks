@@ -127,6 +127,9 @@ cat /var/lib/rancher/k3s/server/node-token
 
 ```bash
 export K3S_TOKEN=<Token from master>
+```
+
+```bash
 export MASTER_IP=<master node IP>
 ```
 
