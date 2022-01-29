@@ -48,14 +48,6 @@ apt install open-iscsi -y && \
 apt install wireguard -y
 ```
 
-## Get manifests / repo
-
-** Note: ** You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
-
-```bash
-git clone https://github.com/askblaker/k3s.rocks.git
-```
-
 ## Get tools
 
 These tools can be on any machine, including your local. But it needs to have kubectl installed. If you have activated kubernetes in your docker desktop installation, you already have it. The bash snippet below installs arkade and uses it to install the other tools. But you could just as well install them separately.
@@ -75,6 +67,14 @@ echo "source <(kubectl completion bash)" >> ~/.bashrc
 In K3S you have one or more master nodes and one or more worker nodes, but the manager nodes can also run workloads. For a high availability set up, it is often recommended to use 3 master nodes, but a single node will be fine for testing.
 
 The first step is to configure one (or more) manager nodes.
+
+## Get manifests / repo
+
+** Note: ** You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
+
+```bash
+git clone https://github.com/askblaker/k3s.rocks.git
+```
 
 ## First master
 
