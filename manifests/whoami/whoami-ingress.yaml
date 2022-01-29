@@ -1,0 +1,23 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: whoami
+
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /bar
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 5678
+          - path: /foo
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 5678

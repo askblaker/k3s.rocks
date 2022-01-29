@@ -4,6 +4,8 @@ Traefik could do https with letsencrypt on its own. But the added features we ge
 
 **Note:** Make sure you have set the right environment variables, including email. When using the production ClusterIssuer, you might quickly run into problems if you try and fail too many times, causing letsencrypt to ignore you for a while.
 
+First, Follow the steps in [first-deploy](first-deploy.md)
+
 - Apply the manifest
 
 ```bash
@@ -36,66 +38,28 @@ cat letsencrypt-prod.yaml | envsubst | kubectl apply -f -
 ```
 </details>
 
-### Echo Test
-
-Apply deployment, service and ingress, using the commands below. This will deploy and expose a docker container on a subdomain.
-
-```bash
-# Deployment
-cat echo-deployment.yaml | envsubst | kubectl apply -f -
-```
+Add the traefik https redirect middleware
 
 <details>
-<summary>echo-deployment.yaml</summary>
+<summary>traefik-https-redirect-middleware.yaml</summary>
 ```
---8<-- "./manifests/echo-deployment.yaml"
+--8<-- "./manifests/traefik-https-redirect-middleware.yaml"
 ```
 </details>
 
-```bash
-# Service
-cat echo-service.yaml | envsubst | kubectl apply -f -
-```
+Add the whoami-tls-ingress.yaml
 
 <details>
-<summary>echo-service.yaml</summary>
+<summary>whoami-ingress-tls.yaml  </summary>
 ```
---8<-- "./manifests/echo-service.yaml"
+--8<-- "./manifests/whoami/whoami-ingress-tls.yaml"
 ```
 </details>
 
-```bash
-# Ingress
-cat echo-ingress.yaml | envsubst | kubectl apply -f -
-```
+## Test
 
-<details>
-<summary>echo-ingress.yaml</summary>
-```
---8<-- "./manifests/echo-ingress.yaml"
-```
-</details>
-
-### Note: Separate or combined yaml
-
-Here we applied deployment, service and ingress separately. Sometimes this makes sense, but we can also combine them into a single file if we prefer. Just separate the sections with a line containing three dashes like this:
-
-```yaml
-<Deployment>
----
-<Service>
----
-<Ingress>
-```
-
-## Time to test
-
-point your browser to <a href="https://echo.dog.example.com" target="_blank">https://echo.dog.example.com</a> . (It might be a few minutes until certificates are ready). You should get a 200 response, and a simple response of "echo1" showing in the webpage.
+point your browser to <a href="https://echo.dog.example.com" target="_blank">https://echo.dog.example.com</a> . (It might be a few minutes until certificates are ready). You should get a 200 response, and a simple response of "echo1" showing in the webpage. You should now see your whoami service served with a fresh https certificate.
 
 ## Troubleshooting
 
 Se cert-managers official <a href="https://cert-manager.io/docs/faq/acme/" target="_blank">trouble shooting guide</a>
-
-# Done
-
-You have now up and running HTTPS with letsencrypt using cert-manager.
