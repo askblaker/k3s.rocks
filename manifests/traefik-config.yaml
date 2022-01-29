@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
-    deploy:
+    deployment:
       kind: DaemonSet
     hostNetwork: true
     dashboard:
@@ -17,9 +17,7 @@ spec:
       level: WARNING
       access:
         enabled: true
-    additionalArguments:
-      - "--metrics.prometheus=true"
 
 # See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
-# The deploy.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for, and can be omitted if this is
+# The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for, and can be omitted if this is
 # not needed.
