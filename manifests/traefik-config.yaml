@@ -10,9 +10,10 @@ spec:
     hostNetwork: true
     dashboard:
       enabled: true
-    ports:
-      web:
-        redirectTo: websecure
+    #ports:
+    #  web:
+    #    redirectTo: websecure
+    # Set if you want permanent http->https redirect
     logs:
       level: WARNING
       access:
