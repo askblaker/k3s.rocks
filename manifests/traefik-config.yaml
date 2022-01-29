@@ -13,11 +13,15 @@ spec:
     #ports:
     #  web:
     #    redirectTo: websecure
-    # Set if you want permanent http->https redirect
+    # Uncomment if you want permanent http->https redirect
     logs:
-      level: WARNING
+      level: INFO
       access:
         enabled: true
+    #additionalArguments:
+    #  - "--entryPoints.web.proxyProtocol.insecure"
+    #  - "--entryPoints.websecure.proxyProtocol.insecure"
+    # Uncomment if you need to add proxy protocol headers
 
 # See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
 # The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for, and can be omitted if this is
