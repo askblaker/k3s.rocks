@@ -6,7 +6,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 ```bash
 # Deployment
-cat whoami-deployment.yaml | envsubst | kubectl apply -f -
+cat ./whoami/whoami-deployment.yaml | envsubst | kubectl apply -f -
 ```
 
 <details>
