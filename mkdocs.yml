@@ -35,7 +35,6 @@ nav:
   - keel.md
   - plausible-analytics.md
   - faq.md
-  - release-notes.md
 
 markdown_extensions:
   - markdown.extensions.codehilite:
