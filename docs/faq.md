@@ -28,3 +28,20 @@ Run the command below to list your interfaces. Look for the one with an address 
 ```bash
 ip a s | grep -i "UP\|inet"
 ```
+
+## Reset node
+
+To reset node run uninstall script and reboot.
+
+From [rancher docs](https://rancher.com/docs/k3s/latest/en/installation/uninstall/)
+To uninstall K3s from a server node, run:
+
+```bash
+/usr/local/bin/k3s-uninstall.sh
+```
+
+To uninstall K3s from an agent node, run:
+
+```bash
+/usr/local/bin/k3s-agent-uninstall.sh
+```
