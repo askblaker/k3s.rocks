@@ -81,3 +81,46 @@ X-Forwarded-Proto: http
 X-Forwarded-Server: m1
 X-Real-Ip: 23.251.11.124
 ```
+
+## Adding HTTPS
+
+The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd`
+
+```bash
+cat ./traefik-https-redirect-middleware.yaml | envsubst | kubectl apply -f -
+```
+
+<details>
+<summary>traefik-https-redirect-middleware</summary>
+```
+--8<-- "./manifests/traefik-https-redirect-middleware.yaml"
+```
+</details>
+
+To add https support, you need to either use cert-manager and add some tls-info to the ingress, or use a tls terminating load-balancer.
+
+### Cert-manager
+
+```bash
+cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
+```
+
+<details>
+<summary>whoami-ingress-tls.yaml</summary>
+```
+--8<-- "./manifests/whoami/whoami-ingress-tls.yaml"
+```
+</details>
+
+### Load balancer
+
+```bash
+cat ./whoami/whoami-ingress-redirect.yaml | envsubst | kubectl apply -f -
+```
+
+<details>
+<summary>whoami-ingress-redirect.yaml</summary>
+```
+--8<-- "./manifests/whoami/whoami-ingress-redirect.yaml"
+```
+</details>
