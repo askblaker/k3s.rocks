@@ -33,6 +33,7 @@ nav:
   - logging.md
   - argocd.md
   - keel.md
+  - plausible-analytics.md
   - faq.md
   - release-notes.md
 
