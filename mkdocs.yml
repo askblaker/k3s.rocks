@@ -21,6 +21,7 @@ edit_uri: ""
 nav:
   - K3S Rocks: index.md
   - install-setup.md
+  - external-load-balancer.md
   - first-deploy.md
   - https-cert-manager-letsencrypt.md
   - traefik-dashboard.md
