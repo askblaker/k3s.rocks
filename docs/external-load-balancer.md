@@ -5,33 +5,33 @@ In case you do not wish to expose nodes to internet directly, prefer to perfrom 
 You will point your a-records to this load balancer, and it will forward traffic to your cluster. Place the nodes and the load balancer in a shared private network, and expose only the load balancer to the public internet.
 
 ```bash
-  ┌────────────────────────────┐
-  |     Private  network       |
-  │  ┌──────────────────────┐  │
-  │  │  Kubernetes Cluster  │  │
-  │  │                      │  │
-  │  │  ┌──────┐   ┌──────┐ │  │   ┌────────┐
-  │  │  │ Node ◄───► Node ◄─┼──┼───► Client │
-  │  │  └──────┘   └──────┘ │  │   └────────┘
-  │  └──────────────────────┘  │
-  └────────────────────────────┘
+┌────────────────────────────┐
+│     Private  network       │
+│  ┌──────────────────────┐  │
+│  │  Kubernetes Cluster  │  │
+│  │                      │  │
+│  │  ┌──────┐   ┌──────┐ │  │   ┌────────┐
+│  │  │ Node ◄───► Node ◄─┼──┼───► Client │
+│  │  └──────┘   └──────┘ │  │   └────────┘
+│  └──────────────────────┘  │
+└────────────────────────────┘
 ```
 
 ```bash
-  ┌────────────────────────────┐
-  │      Private  network      │
-  │  ┌──────────────────────┐  │
-  │  │  Kubernetes Cluster  │  │
-  │  │  ┌──────┐   ┌──────┐ │  │
-  │  │  │ Node ◄───► Node │ │  │
-  │  │  └──▲───┘   └──▲───┘ │  │
-  │  └─────┼──────────┼─────┘  │
-  │     ┌──┴──────────┴─┐      │
-  │     │               │      │   ┌────────┐
-  │     │ Load balancer ◄──────┼───► Client │
-  │     │               │      │   └────────┘
-  │     └───────────────┘      │
-  └────────────────────────────┘
+┌────────────────────────────┐
+│      Private  network      │
+│  ┌──────────────────────┐  │
+│  │  Kubernetes Cluster  │  │
+│  │  ┌──────┐   ┌──────┐ │  │
+│  │  │ Node ◄───► Node │ │  │
+│  │  └──▲───┘   └──▲───┘ │  │
+│  └─────┼──────────┼─────┘  │
+│     ┌──┴──────────┴─┐      │
+│     │               │      │   ┌────────┐
+│     │ Load balancer ◄──────┼───► Client │
+│     │               │      │   └────────┘
+│     └───────────────┘      │
+└────────────────────────────┘
 ```
 
 ## Get wildcard certificate
