@@ -90,10 +90,40 @@ cd k3s.rocks/manifests/
 
 ### Install k3s
 
+Regular internet facing install:
+
 ```bash
-# Remember to have your environment variables set!
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 sh -s server --cluster-init --flannel-backend=wireguard && \
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml  && \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 sh -s server \
+--cluster-init \
+--flannel-backend=wireguard && \
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml && \
+cat traefik-config.yaml | envsubst | kubectl apply -f -
+```
+
+Internal network install
+(Replace all values with the ones that apply for you)
+
+```bash
+export INTERNAL_INTERFACE=eth0
+```
+
+```bash
+export NODE_EXTERNAL_IP=55.55.55.55
+```
+
+```bash
+export NODE_INTERNAL_IP=192.168.0.1
+```
+
+```bash
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 sh -s server \
+--cluster-init \
+--flannel-backend=wireguard \
+--node-external-ip=${NODE_EXTERNAL_IP}  \
+--node-ip=${NODE_INTERNAL_IP} \
+--advertise-address=${NODE_INTERNAL_IP} \
+--flannel-iface=${INTERNAL_INTERFACE} && \
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml && \
 cat traefik-config.yaml | envsubst | kubectl apply -f -
 ```
 
@@ -105,10 +135,10 @@ cat traefik-config.yaml | envsubst | kubectl apply -f -
 </details>
 
 ** Note ** :
-The traefik-config.yaml file could also be moved to `/var/lib/rancher/k3s/server/manifests/traefik-config.yaml` on one of the master nodes. K3S will run these files automatically. But this is optional, and you might be doing this remotely.
+The traefik-config.yaml file could also be copied to `/var/lib/rancher/k3s/server/manifests/traefik-config.yaml` on one of the master nodes. K3S will run these files automatically. But this is optional, and not much help if you are using kubectl from outside the cluster.
 
 ```bash
-mv traefik-config.yaml /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
+cp traefik-config.yaml /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
 ```
 
 ### Add longhorn (optional)
@@ -139,8 +169,37 @@ export MASTER_IP=<master node IP>
 
 - Run the installer
 
+Regular internet facing install:
+
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server --flannel-backend=wireguard --server https://${MASTER_IP}:6443
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+--flannel-backend=wireguard \
+--server https://${MASTER_IP}:6443
+```
+
+Internal network install
+(Replace all values with the ones that apply for you)
+
+```bash
+export INTERNAL_INTERFACE=eth0
+```
+
+```bash
+export NODE_EXTERNAL_IP=55.55.55.55
+```
+
+```bash
+export NODE_INTERNAL_IP=192.168.0.1
+```
+
+```bash
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+--flannel-backend=wireguard \
+--server https://${MASTER_IP}:6443 \
+--node-external-ip=${NODE_EXTERNAL_IP}  \
+--node-ip=${NODE_INTERNAL_IP} \
+--advertise-address=${NODE_INTERNAL_IP} \
+--flannel-iface=${INTERNAL_INTERFACE}
 ```
 
 ## Add worker nodes (optional)
@@ -149,11 +208,32 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S
 
 ```bash
 export K3S_TOKEN=<Token from master>
-export MASTER_IP=<master node IP>
 ```
 
 ```bash
+export MASTER_IP=<master node IP>
+```
+
+Regular internet facing install:
+
+```bash
 curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
+```
+
+Internal network install
+
+```bash
+export NODE_INTERNAL_IP=192.168.0.1
+```
+
+```bash
+export INTERNAL_INTERFACE=eth0
+```
+
+```bash
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" \
+K3S_URL=https://${MASTER_IP}:6443 INSTALL_K3S_EXEC="--node-ip ${NODE_INTERNAL_IP} --flannel-iface ${INTERNAL_INTERFACE}" \
+sh -
 ```
 
 ## Check the cluster
