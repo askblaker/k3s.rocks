@@ -4,6 +4,8 @@ Traefik could do https with letsencrypt on its own. But the added features we ge
 
 **Note:** Make sure you have set the right environment variables, including email. When using the production ClusterIssuer, you might quickly run into problems if you try and fail too many times, causing letsencrypt to ignore you for a while.
 
+**Note:** Consider setting up a [separate load balancer](external-load-balancer.md) that also handles tls termination.
+
 First, Follow the steps in [first-deploy](first-deploy.md)
 
 - Apply the manifest

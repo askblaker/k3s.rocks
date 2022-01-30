@@ -101,6 +101,8 @@ To add https support, you need to either use cert-manager and add some tls-info 
 
 ### Cert-manager
 
+You need first to deploy [cert-manager](https-cert-manager-letsencrypt.md).
+
 ```bash
 cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
 ```
