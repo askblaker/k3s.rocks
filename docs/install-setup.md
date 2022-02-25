@@ -271,3 +271,19 @@ m2     Ready    control-plane,etcd,master   17s     v1.20.6+k3s1
 That's it. You have a single or multi node kubernetes cluster set up.
 
 Continue with the guide to see how to set up some sample applications, basic auth, HTTPS etc.
+
+## Uninstall K3S
+
+If you need to uninstall K3S, you can use these commands from the [k3s docs](https://rancher.com/docs/k3s/latest/en/installation/uninstall/). After that you can repeat the installation process. Sometimes when experimenting, it can also be good to just delete or recreate the VM/VPS you are working on and start from the beginning.
+
+**Server**
+
+```bash
+/usr/local/bin/k3s-uninstall.sh
+```
+
+**Agent**
+
+```bash
+/usr/local/bin/k3s-agent-uninstall.sh
+```
