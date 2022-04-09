@@ -42,6 +42,10 @@ cat letsencrypt-prod.yaml | envsubst | kubectl apply -f -
 
 Add the traefik https redirect middleware
 
+```bash
+cat traefik-https-redirect-middleware.yaml | envsubst | kubectl apply -f -
+```
+
 <details>
 <summary>traefik-https-redirect-middleware.yaml</summary>
 ```
@@ -50,6 +54,10 @@ Add the traefik https redirect middleware
 </details>
 
 Add the whoami-tls-ingress.yaml
+
+```bash
+cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
+```
 
 <details>
 <summary>whoami-ingress-tls.yaml  </summary>
