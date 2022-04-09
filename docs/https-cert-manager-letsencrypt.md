@@ -11,7 +11,7 @@ First, Follow the steps in [first-deploy](first-deploy.md)
 - Apply the manifest
 
 ```bash
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.3.1/cert-manager.yaml
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.0/cert-manager.yaml
 ```
 
 - Wait until all pods are ready
