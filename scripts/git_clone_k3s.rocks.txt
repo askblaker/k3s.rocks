@@ -1,0 +1,1 @@
+git clone https://github.com/askblaker/k3s.rocks.git

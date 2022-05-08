@@ -42,10 +42,7 @@ hostname -F /etc/hostname
 - Install the latest updates, open-iscsi for longhorn and wireguard:
 
 ```bash
-apt update && \
-apt upgrade -y && \
-apt install open-iscsi -y && \
-apt install wireguard -y
+--8<-- "./scripts/install_update_open_scsi_wireguard.txt"
 ```
 
 ## Get tools
@@ -55,13 +52,7 @@ These tools can be on any machine, including your local. But it needs to have ku
 - Install [Arkade](https://github.com/alexellis/arkade), [Helm](https://helm.sh/docs/) and [Kubectl autocomplete](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/):
 
 ```bash
-curl -sLS https://dl.get-arkade.dev | sh && \
-arkade get helm && \
-mv /root/.arkade/bin/helm /usr/local/bin/ && \
-arkade get kubectl && \
-mv /root/.arkade/bin/kubectl /usr/local/bin/ && \
-source <(kubectl completion bash) && \
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+--8<-- "./scripts/install_arkade_helm_kubectl.txt"
 ```
 
 In K3S you have one or more master nodes and one or more worker nodes, but the manager nodes can also run workloads. For a high availability set up, it is often recommended to use 3 master nodes, but a single node will be fine for testing.
@@ -73,7 +64,7 @@ The first step is to configure one (or more) manager nodes.
 ** Note: ** You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
 
 ```bash
-git clone https://github.com/askblaker/k3s.rocks.git
+--8<-- "./scripts/git_clone_k3s.rocks.txt"
 ```
 
 ### cat vs curl
@@ -98,25 +89,18 @@ curl https://raw.githubusercontent.com/askblaker/k3s.rocks/main/manifests/traefi
 
 Not that we also alter the default deployment of the traefik ingress controller, see [helm chart values](https://github.com/traefik/traefik-helm-chart/blob/v9.18.3/traefik/values.yaml) for all the other options. Even K3S internally uses a helmchartconfig, changes can be applied with vanilla kubectl as we do here.
 
-### Goto manifests folder
-
-```bash
-cd k3s.rocks/manifests/
-```
-
 ### Install k3s
+
+There are many different configurations that is suitable for different situations. Below are two of them, one straight forward, and one more advanced. If you are just trying this out, I recommend the first straight forward one.
 
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 sh -s server \
---cluster-init \
---flannel-backend=wireguard && \
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml && \
-cat traefik-config.yaml | envsubst | kubectl apply -f -
+--8<-- "./scripts/install_k3s_regular.txt"
 ```
 
-Internal network install
+<details>
+<summary>Internal network install</summary>
 (Replace all values with the ones that apply for you)
 
 ```bash
@@ -142,6 +126,8 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 sh -s server \
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml && \
 cat traefik-config.yaml | envsubst | kubectl apply -f -
 ```
+
+</details>
 
 <details>
 <summary>traefik-config.yaml</summary>

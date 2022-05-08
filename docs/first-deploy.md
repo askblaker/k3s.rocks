@@ -4,9 +4,10 @@
 
 Apply deployment, service and ingress, using the commands below. This will deploy and expose a docker container on a subdomain.
 
+#### Deployment
+
 ```bash
-# Deployment
-cat ./whoami/whoami-deployment.yaml | envsubst | kubectl apply -f -
+--8<-- "./scripts/whoami_deployment.txt"
 ```
 
 <details>
@@ -16,9 +17,10 @@ cat ./whoami/whoami-deployment.yaml | envsubst | kubectl apply -f -
 ```
 </details>
 
+#### Service
+
 ```bash
-# Service
-cat ./whoami/whoami-service.yaml | envsubst | kubectl apply -f -
+--8<-- "./scripts/whoami_service.txt"
 ```
 
 <details>
@@ -28,9 +30,10 @@ cat ./whoami/whoami-service.yaml | envsubst | kubectl apply -f -
 ```
 </details>
 
+#### Ingress
+
 ```bash
-# Ingress
-cat ./whoami/whoami-ingress.yaml | envsubst | kubectl apply -f -
+--8<-- "./scripts/whoami_ingress.txt"
 ```
 
 <details>
@@ -104,7 +107,7 @@ To add https support, you need to either use cert-manager and add some tls-info 
 You need first to deploy [cert-manager](https-cert-manager-letsencrypt.md).
 
 ```bash
-cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
+cat ./k3s.rocks/whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
 ```
 
 <details>
@@ -117,7 +120,7 @@ cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
 ### Load balancer
 
 ```bash
-cat ./whoami/whoami-ingress-redirect.yaml | envsubst | kubectl apply -f -
+cat ./k3s.rocks/whoami/whoami-ingress-redirect.yaml | envsubst | kubectl apply -f -
 ```
 
 <details>
