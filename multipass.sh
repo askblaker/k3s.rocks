@@ -23,7 +23,7 @@ multipass exec testvm -- bash -c "KUBECONFIG=/etc/rancher/k3s/k3s.yaml bash ./k3
 multipass exec testvm -- bash -c "KUBECONFIG=/etc/rancher/k3s/k3s.yaml bash ./k3s.rocks/scripts/whoami_ingress.txt"
 
 echo "Give services some time to start..."
-sleep 60
+sleep 120
 echo "Continuing..."
 
 if [[ $(curl ${TESTVMIP}/fy) != "404 page not found" ]]; then exit 1; fi
