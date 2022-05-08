@@ -1,1 +1,1 @@
-kubectl apply -f ./k3s.rocks/manifests/whoami/whoami-deployment.yaml 
+kubectl apply -f ./manifests/whoami/whoami-deployment.yaml 
