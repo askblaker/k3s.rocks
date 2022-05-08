@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: whoami-loadbalancer
+spec:
+  ports:
+    - name: whoami-test
+      port: 5678
+      targetPort: 5678
+      protocol: TCP
+  selector:
+    app: whoami
+  type: LoadBalancer
