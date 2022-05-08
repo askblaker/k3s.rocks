@@ -55,7 +55,7 @@ Here we applied deployment, service and ingress separately. Sometimes this makes
 <Ingress>
 ```
 
-## Time to test
+### Time to test
 
 Use your browser curl to check <a href="https://the.vps.address/foo" target="_blank">http://the.vps.address/foo</a>
 
@@ -90,7 +90,7 @@ X-Real-Ip: 23.251.11.124
 The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd`
 
 ```bash
-cat ./traefik-https-redirect-middleware.yaml | envsubst | kubectl apply -f -
+--8<-- "./scripts/apply_traefik_redirect_middleware.txt"
 ```
 
 <details>
@@ -106,26 +106,17 @@ To add https support, you need to either use cert-manager and add some tls-info 
 
 You need first to deploy [cert-manager](https-cert-manager-letsencrypt.md).
 
+### Ingress
+
+Then you can apply the ingress.
+
 ```bash
-cat ./k3s.rocks/whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
+--8<-- "./scripts/apply_https_ingress.txt"
 ```
 
 <details>
 <summary>whoami-ingress-tls.yaml</summary>
 ```
 --8<-- "./manifests/whoami/whoami-ingress-tls.yaml"
-```
-</details>
-
-### Load balancer
-
-```bash
-cat ./k3s.rocks/whoami/whoami-ingress-redirect.yaml | envsubst | kubectl apply -f -
-```
-
-<details>
-<summary>whoami-ingress-redirect.yaml</summary>
-```
---8<-- "./manifests/whoami/whoami-ingress-redirect.yaml"
 ```
 </details>

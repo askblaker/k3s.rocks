@@ -1,0 +1,1 @@
+kubectl apply -f ./k3s.rocks/manifests/traefik-https-redirect-middleware.yaml
