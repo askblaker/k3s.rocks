@@ -67,17 +67,30 @@ The first step is to configure one (or more) manager nodes.
 --8<-- "./scripts/git_clone_k3s.rocks.txt"
 ```
 
-### cat vs curl
+### apply vs cat vs curl
 
 If you prefer not to download them, you can also curl and pipe them directly into kubectl apply -f. Just replace the cat command, with a curl command with the correct url, like this:
 
-#### cat
+#### apply
+
+This is the most common version and works fine as long as you dont need to substitute any environment variables.
 
 ```bash
+kubectl apply -f traefik-config.yaml
+```
+
+#### cat / envsubst
+
+If you need to replace environment variables inside the yaml, you can do it like this:
+
+```bash
+export DOMAIN=test.mydomain.com
 cat traefik-config.yaml | envsubst | kubectl apply -f -
 ```
 
 #### curl
+
+You can also curl and pipe directly into kubectl if you prefer
 
 ```
 curl https://raw.githubusercontent.com/askblaker/k3s.rocks/main/manifests/traefik-config.yaml | envsubst | kubectl apply -f -

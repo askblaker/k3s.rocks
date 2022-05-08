@@ -1,2 +1,2 @@
 # DOMAIN environment variable required
-cat ./k3s.rocks/whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
+cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -

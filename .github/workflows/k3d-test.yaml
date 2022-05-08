@@ -1,0 +1,17 @@
+name: k3s-test
+on: [push]
+env:
+  CLUSTERIP: notsetyet
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+      - run: k3d cluster create mycluster --agents 0 -p "40000:80@loadbalancer"
+      - run: docker ps
+      - run: bash -c "$(cat ./scripts/whoami_deployment.txt)"
+      - run: bash -c "$(cat ./scripts/whoami_service.txt)"
+      - run: bash -c "$(cat ./scripts/whoami_ingress.txt)"
+      - run: kubectl get pods
+      - run: ./curl.sh
