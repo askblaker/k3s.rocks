@@ -15,11 +15,11 @@ helm repo update
 * Install / Deploy it with helm
 ```bash
 # For new install
-helm install prometheus-stack --version 16.0.1 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
+helm install prometheus-stack --version 35.3.1 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
 ```
 ```bash
 # Or e.g. after updating values
-helm upgrade prometheus-stack --version 16.0.0 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
+helm upgrade prometheus-stack --version 35.3.1 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
 ```
 
 ## Ingresses
