@@ -1,1 +1,1 @@
-kubectl apply -f ./manifests/traefik-https-redirect-middleware.yaml
+kubectl apply -f ./traefik-https-redirect-middleware.yaml

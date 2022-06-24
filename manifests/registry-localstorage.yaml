@@ -29,6 +29,13 @@ spec:
         image: registry:2
         ports:
         - containerPort: 5000
+        volumeMounts:
+        - name: my-registry-localstorage-volume
+          mountPath: /var/lib/registry
+      volumes:
+      - name: my-registry-localstorage-volume
+        persistentVolumeClaim:
+          claimName: registry-pvc
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
