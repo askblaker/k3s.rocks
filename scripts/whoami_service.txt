@@ -1,1 +1,1 @@
-kubectl apply -f ./manifests/whoami/whoami-service.yaml
+kubectl apply -f ./whoami/whoami-service.yaml

@@ -67,6 +67,12 @@ The first step is to configure one (or more) manager nodes.
 --8<-- "./scripts/git_clone_k3s.rocks.txt"
 ```
 
+After cloning the repository, change into the manifest directory:
+
+```bash
+cd k3s.rocks/manifests 
+```
+
 ### apply vs cat vs curl
 
 If you prefer not to download them, you can also curl and pipe them directly into kubectl apply -f. Just replace the cat command, with a curl command with the correct url, like this:

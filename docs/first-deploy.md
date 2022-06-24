@@ -57,10 +57,10 @@ Here we applied deployment, service and ingress separately. Sometimes this makes
 
 ### Time to test
 
-Use your browser curl to check <a href="https://the.vps.address/foo" target="_blank">http://the.vps.address/foo</a>
+Use your browser curl to check <a href="https://example.com/foo" target="_blank">http://example.com/foo</a>
 
 ```bash
-curl http://the.vps.ip.here/foo
+curl http://example.com/foo
 ```
 
 ```bash
@@ -107,7 +107,6 @@ To add https support, you need to either use cert-manager and add some tls-info 
 You need first to deploy [cert-manager](https-cert-manager-letsencrypt.md).
 
 ### Ingress
-
 Then you can apply the ingress.
 
 ```bash

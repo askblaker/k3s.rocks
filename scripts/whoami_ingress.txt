@@ -1,1 +1,1 @@
-kubectl apply -f ./manifests/whoami/whoami-ingress.yaml
+kubectl apply -f ./whoami/whoami-ingress.yaml
