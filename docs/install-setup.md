@@ -70,7 +70,7 @@ The first step is to configure one (or more) manager nodes.
 After cloning the repository, change into the manifest directory:
 
 ```bash
-cd k3s.rocks/manifests 
+cd k3s.rocks/manifests
 ```
 
 ### apply vs cat vs curl
@@ -135,7 +135,7 @@ export NODE_INTERNAL_IP=192.168.0.1
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.23.5.0+k3s1 sh -s server \
 --cluster-init \
 --flannel-backend=wireguard \
 --node-external-ip=${NODE_EXTERNAL_IP}  \
@@ -193,7 +193,7 @@ export MASTER_IP=<master node IP>
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.23.5+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
 --flannel-backend=wireguard \
 --server https://${MASTER_IP}:6443
 ```
@@ -214,7 +214,7 @@ export NODE_INTERNAL_IP=192.168.0.1
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.23.5+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
 --flannel-backend=wireguard \
 --server https://${MASTER_IP}:6443 \
 --node-external-ip=${NODE_EXTERNAL_IP}  \
@@ -238,7 +238,7 @@ export MASTER_IP=<master node IP>
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.23.5+k3s1 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
 ```
 
 Internal network install
@@ -252,7 +252,7 @@ export INTERNAL_INTERFACE=eth0
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.21.0+k3s1 K3S_TOKEN="${K3S_TOKEN}" \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.23.5+k3s1 K3S_TOKEN="${K3S_TOKEN}" \
 K3S_URL=https://${MASTER_IP}:6443 INSTALL_K3S_EXEC="--node-ip ${NODE_INTERNAL_IP} --flannel-iface ${INTERNAL_INTERFACE}" \
 sh -
 ```
@@ -267,8 +267,8 @@ Should output something like this (if you start with one master and add another 
 
 ```bash
 NAME   STATUS   ROLES                       AGE     VERSION
-m1     Ready    control-plane,etcd,master   3m26s   v1.20.6+k3s1
-m2     Ready    control-plane,etcd,master   17s     v1.20.6+k3s1
+m1     Ready    control-plane,etcd,master   3m26s   v1.23.5+k3s1
+m2     Ready    control-plane,etcd,master   17s     v1.23.5+k3s1
 ```
 
 ## Done
