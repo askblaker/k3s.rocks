@@ -1,4 +1,6 @@
 sudo apt update && \
 sudo apt upgrade -y && \
+sudo apt install curl -y && \
+sudo apt install ca-certificates -y && \
 sudo apt install open-iscsi -y && \
 sudo apt install wireguard -y
