@@ -5,23 +5,32 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
-    deployment:
-      kind: DaemonSet
-    hostNetwork: true
-    dashboard:
-      enabled: true
-    #ports:
-    #  web:
-    #    redirectTo: websecure
-    # Uncomment if you want permanent http->https redirect
     logs:
       level: INFO
       access:
         enabled: true
-    additionalArguments:
-      - "--entryPoints.web.proxyProtocol.insecure"
-      - "--entryPoints.websecure.proxyProtocol.insecure"
+
+    #dashboard:
+    #  enabled: true
+
+    #deployment:
+    #  kind: DaemonSet
+    #hostNetwork: true
+
+    #updateStrategy:
+    #  type: RollingUpdate
+    #  rollingUpdate:
+    #    maxUnavailable: 2
+
+    #additionalArguments:
+    #  - "--entryPoints.web.proxyProtocol.insecure"
+    #  - "--entryPoints.websecure.proxyProtocol.insecure"
 
 # See https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml for more examples
-# The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for, and can be omitted if this is
-# not needed.
+# The deployment.kind=DaemonSet and hostNetwork=true is to get real ip and x-forwarded for,
+# and can be omitted if this is not needed.
+
+# The updateStrategy settings are required for the latest traefik helm version,
+# see more here: https://github.com/traefik/traefik-helm-chart/blob/v20.8.0/traefik/templates/daemonset.yaml#L12-L14
+# but this version not yet supported by k3s, so leaving it commented out for now.
+# The config above has been tested to work with latest stable k3s (v1.25.4+k3s1).
