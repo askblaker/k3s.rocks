@@ -5,8 +5,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 2368
+    - port: 80
+      targetPort: 2368
   selector:
     app: ghost
 ---
@@ -25,17 +25,27 @@ spec:
         app: ghost
     spec:
       containers:
-      - name: ghost
-        image: ghost
-        ports:
-        - containerPort: 2368
-        volumeMounts:
-        - name: my-ghost-longhorn-volume
-          mountPath: /var/lib/ghost/content
+        - name: ghost
+          image: ghost:5.32.0
+          # prettier-ignore
+          env:
+          - name: database__client
+            value: sqlite3
+          - name: database__connection__filename
+            value: content/data/ghost.db
+          - name: database__useNullAsDefault
+            value: "true"
+          - name: database__debug
+            value: "false"
+          ports:
+            - containerPort: 2368
+          volumeMounts:
+            - name: my-ghost-longhorn-volume
+              mountPath: /var/lib/ghost/content
       volumes:
-      - name: my-ghost-longhorn-volume
-        persistentVolumeClaim:
-          claimName: ghost-longhorn-pvc
+        - name: my-ghost-longhorn-volume
+          persistentVolumeClaim:
+            claimName: ghost-longhorn-pvc
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -46,16 +56,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-  - host: ghost.${DOMAIN}
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: ghost
-            port:
-              number: 80
+    - host: ghost.${DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ghost
+                port:
+                  number: 80
   tls:
     - secretName: ghost-tls
       hosts:
