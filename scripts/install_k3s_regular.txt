@@ -1,6 +1,6 @@
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.23.5+k3s1 sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.1+k3s1 sh -s server \
 --cluster-init \
---flannel-backend=wireguard \
+--flannel-backend=wireguard-native \
 --write-kubeconfig-mode 644 && \
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml && \
-cat ./manifests/traefik-config.yaml | envsubst | kubectl apply -f -
+cat traefik-config.yaml | envsubst | kubectl apply -f -

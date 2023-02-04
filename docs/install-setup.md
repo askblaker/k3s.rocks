@@ -3,7 +3,7 @@
 ## Install a new Linux server with Docker
 
 - Create a new remote VPS ("virtual private server").
-- Deploy the latest Ubuntu LTS ("long term support") version. At the time of this writing it's `Ubuntu 20.04`.
+- Deploy the latest Ubuntu LTS ("long term support") version. At the time of this writing it's `Ubuntu 22.04`.
 - Connect to it via SSH, e.g.:
 
 ```bash
@@ -39,7 +39,7 @@ hostname -F /etc/hostname
 
 **Note**: If you are not a `root` user, you might need to add `sudo` to these commands. The shell will tell you when you don't have enough permissions. Note that `sudo` does not preserve environment variables by default, but this can be enabled via the `-E` flag.
 
-- Install the latest updates, open-iscsi for longhorn and wireguard:
+- Install the latest updates, open-iscsi/nfs-common for longhorn and wireguard for security:
 
 ```bash
 --8<-- "./scripts/install_update_open_scsi_wireguard.txt"
@@ -49,7 +49,25 @@ hostname -F /etc/hostname
 
 These tools can be on any machine, including your local. But it needs to have kubectl installed. If you have activated kubernetes in your docker desktop installation, you already have it. The bash snippet below installs arkade and uses it to install the other tools. But you could just as well install them separately.
 
-- Install [Arkade](https://github.com/alexellis/arkade), [Helm](https://helm.sh/docs/) and [Kubectl autocomplete](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/):
+- Install [Arkade](https://github.com/alexellis/arkade)
+
+```bash
+curl -sLS https://dl.get-arkade.dev | sh
+```
+
+Depending on how the install went, you might need to manually copy it into bin. Try running it with
+
+```bash
+arkade version
+```
+
+If it doesnt work, then try copying it manually
+
+```bash
+sudo cp arkade /usr/local/bin/arkade
+```
+
+- Install [Helm](https://helm.sh/docs/) and [Kubectl autocomplete](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/):
 
 ```bash
 --8<-- "./scripts/install_arkade_helm_kubectl.txt"
@@ -135,9 +153,9 @@ export NODE_INTERNAL_IP=192.168.0.1
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.1+k3s1 sh -s server \
 --cluster-init \
---flannel-backend=wireguard \
+--flannel-backend=wireguard-native \
 --node-external-ip=${NODE_EXTERNAL_IP}  \
 --node-ip=${NODE_INTERNAL_IP} \
 --advertise-address=${NODE_INTERNAL_IP} \
@@ -165,7 +183,7 @@ cp traefik-config.yaml /var/lib/rancher/k3s/server/manifests/traefik-config.yaml
 ### Add longhorn (optional)
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.1.0/deploy/longhorn.yaml
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/deploy/longhorn.yaml
 ```
 
 ### Get the token (Optional)
@@ -193,12 +211,13 @@ export MASTER_IP=<master node IP>
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
---flannel-backend=wireguard \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.1+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+--flannel-backend=wireguard-native \
 --server https://${MASTER_IP}:6443
 ```
 
-Internal network install
+<details>
+<summary>Internal network install</summary>
 (Replace all values with the ones that apply for you)
 
 ```bash
@@ -214,14 +233,16 @@ export NODE_INTERNAL_IP=192.168.0.1
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
---flannel-backend=wireguard \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.1+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+--flannel-backend=wireguard-native \
 --server https://${MASTER_IP}:6443 \
 --node-external-ip=${NODE_EXTERNAL_IP}  \
 --node-ip=${NODE_INTERNAL_IP} \
 --advertise-address=${NODE_INTERNAL_IP} \
 --flannel-iface=${INTERNAL_INTERFACE}
 ```
+
+</details>
 
 ## Add worker nodes (optional)
 
@@ -238,10 +259,11 @@ export MASTER_IP=<master node IP>
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.1+k3s1 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
 ```
 
-Internal network install
+<details>
+<summary>Internal network install</summary>
 
 ```bash
 export NODE_INTERNAL_IP=192.168.0.1
@@ -252,10 +274,12 @@ export INTERNAL_INTERFACE=eth0
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.25.4+k3s1 K3S_TOKEN="${K3S_TOKEN}" \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.26.1+k3s1 K3S_TOKEN="${K3S_TOKEN}" \
 K3S_URL=https://${MASTER_IP}:6443 INSTALL_K3S_EXEC="--node-ip ${NODE_INTERNAL_IP} --flannel-iface ${INTERNAL_INTERFACE}" \
 sh -
 ```
+
+</details>
 
 ## Check the cluster
 
@@ -267,8 +291,8 @@ Should output something like this (if you start with one master and add another 
 
 ```bash
 NAME   STATUS   ROLES                       AGE     VERSION
-m1     Ready    control-plane,etcd,master   3m26s   v1.25.4+k3s1
-m2     Ready    control-plane,etcd,master   17s     v1.25.4+k3s1
+m1     Ready    control-plane,etcd,master   3m26s   v1.26.1+k3s1
+m2     Ready    control-plane,etcd,master   17s     v1.26.1+k3s1
 ```
 
 ## Done

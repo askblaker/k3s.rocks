@@ -1,6 +1,3 @@
-curl -sLS https://dl.get-arkade.dev | sh && \
-sudo cp arkade /usr/local/bin/arkade && \
-sudo cp arkade /usr/local/bin/arkade && \
 arkade get helm && \
 sudo cp ~/.arkade/bin/helm /usr/local/bin/ && \
 arkade get kubectl && \
