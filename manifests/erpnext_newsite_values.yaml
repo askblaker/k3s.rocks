@@ -1,0 +1,12 @@
+persistence:
+  worker:
+    storageClass: "longhorn"
+
+global:
+  storageClass: "longhorn"
+
+jobs:
+  createSite:
+    enabled: true
+    siteName: "erpnext.k3s"
+    adminPassword: "secret"

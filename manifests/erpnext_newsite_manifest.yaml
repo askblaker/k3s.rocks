@@ -1,0 +1,101 @@
+---
+# Source: erpnext/templates/job-create-site.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: frappe-bench-erpnext-new-site-20230204221209
+  labels:
+    helm.sh/chart: erpnext-6.0.5
+    app.kubernetes.io/name: erpnext
+    app.kubernetes.io/instance: frappe-bench
+    app.kubernetes.io/version: "v14.15.1"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      serviceAccountName: frappe-bench-erpnext
+      securityContext:
+        supplementalGroups:
+          - 1000
+      initContainers:
+        - name: validate-config
+          image: "frappe/erpnext:v14.15.1"
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          args:
+            - >
+              export start=`date +%s`;
+              until [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".db_host // empty"` ]] && \
+                [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_cache // empty"` ]] && \
+                [[ -n `grep -hs ^ sites/common_site_config.json | jq -r ".redis_queue // empty"` ]];
+              do
+                echo "Waiting for sites/common_site_config.json to be created";
+                sleep 5;
+                if (( `date +%s`-start > 600 )); then
+                  echo "could not find sites/common_site_config.json with required keys";
+                  exit 1
+                fi
+              done;
+              echo "sites/common_site_config.json found";
+          resources: {}
+          securityContext:
+            capabilities:
+              add:
+                - CAP_CHOWN
+          volumeMounts:
+            - name: sites-dir
+              mountPath: /home/frappe/frappe-bench/sites
+      containers:
+        - name: create-site
+          image: "frappe/erpnext:v14.15.1"
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          args:
+            - >
+              bench new-site $(SITE_NAME)
+              --no-mariadb-socket
+              --db-type=$(DB_TYPE)
+              --db-host=$(DB_HOST)
+              --db-port=$(DB_PORT)
+              --admin-password=$(ADMIN_PASSWORD)
+              --mariadb-root-username=$(DB_ROOT_USER)
+              --mariadb-root-password=$(DB_ROOT_PASSWORD)
+              --install-app=erpnext
+              ;rm -f currentsite.txt
+          env:
+            - name: "SITE_NAME"
+              value: "erpnext.k3s"
+            - name: "DB_TYPE"
+              value: mariadb
+            - name: "DB_HOST"
+              value: frappe-bench-mariadb
+            - name: "DB_PORT"
+              value: "3306"
+            - name: "DB_ROOT_USER"
+              value: "root"
+            - name: "DB_ROOT_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb-root-password
+                  name: frappe-bench-mariadb
+            - name: "ADMIN_PASSWORD"
+              value: "secret"
+          resources: {}
+          securityContext:
+            capabilities:
+              add:
+                - CAP_CHOWN
+          volumeMounts:
+            - name: sites-dir
+              mountPath: /home/frappe/frappe-bench/sites
+            - name: logs
+              mountPath: /home/frappe/frappe-bench/logs
+      restartPolicy: Never
+      volumes:
+        - name: sites-dir
+          persistentVolumeClaim:
+            claimName: frappe-bench-erpnext
+            readOnly: false
+        - name: logs
+          emptyDir: {}

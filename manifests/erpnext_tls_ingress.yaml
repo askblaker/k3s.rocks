@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: erpnext-tls-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-replace-host@kubernetescrd
+spec:
+  rules:
+    - host: erpnext.${DOMAIN}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frappe-bench-erpnext
+                port:
+                  number: 8080
+  tls:
+    - secretName: erpnext-tls
+      hosts:
+        - erpnext.${DOMAIN}

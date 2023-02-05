@@ -34,6 +34,7 @@ nav:
   - argocd.md
   - keel.md
   - plausible-analytics.md
+  - erpnext.md
   - faq.md
 
 markdown_extensions:

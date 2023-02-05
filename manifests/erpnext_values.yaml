@@ -1,0 +1,9 @@
+persistence:
+  worker:
+    storageClass: "longhorn"
+
+mariadb:
+  enabled: true
+
+global:
+  storageClass: "longhorn"
