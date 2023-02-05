@@ -202,8 +202,15 @@ export EMAIL=name@example.com
 #### Apply manifest
 
 ```bash
-cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
+cat ./manifests/erpnext_tls_ingress.yaml | envsubst | kubectl apply -f -
 ```
+
+<details>
+<summary>erpnext_tls_ingress.yaml</summary>
+```
+--8<-- "./manifests/erpnext_tls_ingress.yaml"
+```
+</details>
 
 #### Go to site
 
