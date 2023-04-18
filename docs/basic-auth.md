@@ -52,7 +52,7 @@ cat traefik-ingressroute.yaml | envsubst | kubectl apply -f -
 **Note: ** The middleware is prefixed with the namespace, in this case default.
 
 ```bash
-cat traefik-ingress.yaml | envsubst | kubectl apply -f -
+cat traefik-dashboard-ingress-basic-auth.yaml | envsubst | kubectl apply -f -
 ```
 
 <details>
