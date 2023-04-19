@@ -33,6 +33,14 @@ cat ghost-localstorage.yaml | envsubst | kubectl apply -f -
 </details>
 
 ## Distributed storage (Longhorn)
+  
+### Setting up Longhorn
+
+Apply the `longhorn.yaml` to install Longhorn
+```bash
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+```
+Longhorn will be installed in the namespace `longhorn-system`.
 
 ### Longhorn PVC
 
