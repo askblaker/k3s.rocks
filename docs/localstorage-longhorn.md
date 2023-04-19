@@ -38,7 +38,7 @@ cat ghost-localstorage.yaml | envsubst | kubectl apply -f -
 
 Apply the `longhorn.yaml` to install Longhorn
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/deploy/longhorn.yaml
 ```
 Longhorn will be installed in the namespace `longhorn-system`.
 
