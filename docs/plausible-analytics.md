@@ -22,6 +22,13 @@ Apply the manifest with envsubst
 cat plausible-localstorage.yaml | envsubst | kubectl apply -f -
 ```
 
+<details>
+<summary>plausible-localstorage.yaml</summary>
+```
+--8<-- "./manifests/plausible-localstorage.yaml"
+```
+</details>
+
 This should result in something like this:
 
 ```bash
