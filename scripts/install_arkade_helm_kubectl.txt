@@ -1,6 +1,0 @@
-arkade get helm && \
-sudo cp ~/.arkade/bin/helm /usr/local/bin/ && \
-arkade get kubectl && \
-sudo mv ~/.arkade/bin/kubectl /usr/local/bin/ && \
-source <(kubectl completion bash) && \
-echo 'source <(kubectl completion bash)' >> ~/.bashrc
