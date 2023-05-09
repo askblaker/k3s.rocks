@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: technitium
+spec:
+  selector:
+    matchLabels:
+      app: technitium
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: technitium
+    spec:
+      containers:
+        - name: technitium
+          image: technitium/dns-server:11.1.1
+          volumeMounts:
+            - name: technitium-volume
+              mountPath: /etc/dns
+      volumes:
+        - name: technitium-volume
+          persistentVolumeClaim:
+            claimName: technitium-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: technitium-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 2Gi
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: technitium-loadbalancer
+spec:
+  ports:
+    - name: technitium-udp
+      port: 53
+      targetPort: 53
+      protocol: UDP
+    - name: technitium-tcp
+      port: 53
+      targetPort: 53
+      protocol: TCP
+    - name: technitium-http
+      port: 5380
+      targetPort: 5380
+      protocol: TCP
+  selector:
+    app: technitium
+  type: LoadBalancer
