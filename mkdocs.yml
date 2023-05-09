@@ -35,6 +35,7 @@ nav:
   - keel.md
   - plausible-analytics.md
   - erpnext.md
+  - technitium-dns.md
   - faq.md
 
 markdown_extensions:
