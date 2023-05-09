@@ -45,34 +45,6 @@ hostname -F /etc/hostname
 --8<-- "./scripts/install_update_open_scsi_wireguard.txt"
 ```
 
-## Get tools
-
-These tools can be on any machine, including your local. But it needs to have kubectl installed. If you have activated kubernetes in your docker desktop installation, you already have it. The bash snippet below installs arkade and uses it to install the other tools. But you could just as well install them separately.
-
-- Install [Arkade](https://github.com/alexellis/arkade)
-
-```bash
-curl -sLS https://dl.get-arkade.dev | sh
-```
-
-Depending on how the install went, you might need to manually copy it into bin. Try running it with
-
-```bash
-arkade version
-```
-
-If it doesnt work, then try copying it manually
-
-```bash
-sudo cp arkade /usr/local/bin/arkade
-```
-
-- Install [Helm](https://helm.sh/docs/) and [Kubectl autocomplete](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/):
-
-```bash
---8<-- "./scripts/install_arkade_helm_kubectl.txt"
-```
-
 In K3S you have one or more master nodes and one or more worker nodes, but the manager nodes can also run workloads. For a high availability set up, it is often recommended to use 3 master nodes, but a single node will be fine for testing.
 
 The first step is to configure one (or more) manager nodes.
@@ -280,6 +252,19 @@ sh -
 ```
 
 </details>
+
+## Get tools
+
+These tools can be on any machine, including your local. But it needs to at least have kubectl installed. If you have activated kubernetes in your docker desktop installation, you already have it.
+
+Required
+
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+
+Optional
+
+- [Kubectl autocomplete](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete)
+- [Helm](https://helm.sh/docs/)
 
 ## Check the cluster
 
