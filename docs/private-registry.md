@@ -27,7 +27,7 @@ metadata:
   namespace: default
 data:
   users: |2
-    $(htpasswd -bn $REGISTRY_USERNAME $REGISTRY_PASSWORD | base64)
+    $(htpasswd -Bbn $REGISTRY_USERNAME $REGISTRY_PASSWORD | base64)
 EOF
 ```
 
