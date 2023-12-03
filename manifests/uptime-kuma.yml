@@ -51,7 +51,8 @@ spec:
     - metadata:
         name: kuma-data
       spec:
-        accessModes: ["ReadWriteOnce"]
+         accessModes:
+           - ReadWriteOnce
         volumeMode: Filesystem
         resources:
           requests:
