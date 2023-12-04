@@ -32,7 +32,9 @@ nav:
   - plausible-analytics.md
   - erpnext.md
   - technitium-dns.md
+  - uptime-kuma.md
   - faq.md
+
 
 markdown_extensions:
   - markdown.extensions.codehilite:
