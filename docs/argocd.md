@@ -1,5 +1,5 @@
 ## Install ArgoCD
-![argocd ui](/img/argoCD.svg)
+![argocd ui](/docs/img/argoCD.svg)
 [docs](https://argoproj.github.io/argo-cd/getting_started/)  
 
 
