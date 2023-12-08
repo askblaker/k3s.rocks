@@ -1,5 +1,5 @@
 ## Install ArgoCD
-![argocd ui](/docs/img/argoCD.svg =100x20)
+<img src="/docs/img/argoCD.svg" alt="drawing" width="200"/>
 [docs](https://argoproj.github.io/argo-cd/getting_started/)  
 
 
