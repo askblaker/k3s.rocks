@@ -56,8 +56,10 @@ We set the deployment.kind to DaemonSet, hostNetwork: true and web.proxyProtocol
 
 The `deamonset` and `hostnetwork: true` settings makes sure there is a traefik pod running on every node, meaning any packet will be forwarded by traefik with the proxy protocol. This is only important if you expect incoming traffic on all nodes and you could consider just having traefik services on certain nodes, and only pointing the load balancer to those nodes.
 
-For a single node deployment with no external load balancer, it should be sufficient to add/uncomment to traefik-config.yml: 
+For a single node deployment with no external load balancer, it should be sufficient to add/uncomment the following to the traefik-config.yml: 
 ```yml
+spec:
+  valuesContent: |-
     service:
       spec:
         externalTrafficPolicy: Local
