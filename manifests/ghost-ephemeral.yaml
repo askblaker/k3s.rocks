@@ -45,7 +45,7 @@ kind: Ingress
 metadata:
   name: ghost-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:

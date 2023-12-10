@@ -249,7 +249,7 @@ kind: Ingress
 metadata:
   name: plausible-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
