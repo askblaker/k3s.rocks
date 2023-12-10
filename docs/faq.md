@@ -52,19 +52,23 @@ It can be important to know from what ip address the request originated Analytic
 
 If we do not enable this in the traefik config we will see errors when we try to send requests. So we have to activate it in the traefik service. If you use a load balancer it is also important to remember to activate this setting in the loadbalancer itself, so you can benefit from it downstream.
 
-We set the deployment.kind to DaemonSet, hostNetwork: true and web.proxyProtocol.insecure. If you are using a load balancer, it is highly recommended to use `proxyProtocol.trustedIPs` instead, set to your load balancer ip. [https://doc.traefik.io/traefik/routing/entrypoints/#proxyprotocol](https://doc.traefik.io/traefik/routing/entrypoints/#proxyprotocol)
+We set the deployment.kind to DaemonSet, hostNetwork: true and web.proxyProtocol.insecure for testing. If you are using a load balancer, it is highly recommended to use `proxyProtocol.trustedIPs` instead, set to your load balancer ip. [https://doc.traefik.io/traefik/routing/entrypoints/#proxyprotocol](https://doc.traefik.io/traefik/routing/entrypoints/#proxyprotocol)
 
-The deamonset and hostnetwork: true makes sure there is a traefik pod running on every node, meaning any packet will be forwarded by traefik with the proxy protocol. This is only important if you expect incoming traffic on all nodes and you could consider just having traefik services on certain nodes, and only pointing the load balancer to those nodes.
+The `deamonset` and `hostnetwork: true` settings makes sure there is a traefik pod running on every node, meaning any packet will be forwarded by traefik with the proxy protocol. This is only important if you expect incoming traffic on all nodes and you could consider just having traefik services on certain nodes, and only pointing the load balancer to those nodes.
 
-traefik-config.yaml (exerpt):
-
-```yaml
-spec:
-  valuesContent: |-
-    deployment:
-      kind: DaemonSet
-    hostNetwork: true
-    additionalArguments:
-      #- "--entryPoints.web.proxyProtocol.trustedIPs=123.123.123.123"
-      - "--entryPoints.web.proxyProtocol.insecure"
+For a single node deployment with no external load balancer, it should be sufficient to add/uncomment to traefik-config.yml: 
+```yml
+    service:
+      spec:
+        externalTrafficPolicy: Local
 ```
+
+<details>
+<summary>traefik-config.yaml</summary>
+```
+--8<-- "./manifests/traefik-config.yml"
+```
+</details>
+
+
+
