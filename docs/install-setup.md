@@ -37,7 +37,7 @@ echo $USE_HOSTNAME > /etc/hostname
 hostname -F /etc/hostname
 ```
 
-**Note**: If you are not a `root` user, you might need to add `sudo` to these commands. The shell will tell you when you don't have enough permissions. Note that `sudo` does not preserve environment variables by default, but this can be enabled via the `-E` flag.
+**Note** : If you are not a `root` user, you might need to add `sudo` to these commands. The shell will tell you when you don't have enough permissions. Note that `sudo` does not preserve environment variables by default, but this can be enabled via the `-E` flag.
 
 - Install the latest updates, open-iscsi/nfs-common for longhorn and wireguard for security:
 
@@ -51,7 +51,7 @@ The first step is to configure one (or more) manager nodes.
 
 ## Get manifests / repo
 
-** Note: ** You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
+**Note**: You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
 
 ```bash
 --8<-- "./scripts/git_clone_k3s.rocks.txt"
@@ -94,7 +94,7 @@ curl https://raw.githubusercontent.com/askblaker/k3s.rocks/main/manifests/traefi
 
 ## First master
 
-**Note:** Remember to have your environment variables set!
+**Note**: Remember to have your environment variables set!
 
 Not that we also alter the default deployment of the traefik ingress controller, see [helm chart values](https://github.com/traefik/traefik-helm-chart/blob/v9.18.3/traefik/values.yaml) for all the other options. Even K3S internally uses a helmchartconfig, changes can be applied with vanilla kubectl as we do here.
 
