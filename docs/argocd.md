@@ -1,7 +1,5 @@
-## Install ArgoCD
-![argocd ui](/img/argo)
-[docs](https://argoproj.github.io/argo-cd/getting_started/)  
-
+## Install [ArgoCD](https://argoproj.github.io/argo-cd/getting_started/)  
+![argocd ui](img/argo.webp)
 
 ## Install
 ### Either with the included manifest

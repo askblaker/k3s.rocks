@@ -1,6 +1,6 @@
 ## Logging
 Since we already are relying on grafana for metrics, it is conveniant to use Loki for logging.
-![Loki](/img/loki.webp)
+![Loki](img/loki.webp)
 
 ### Install loki
 ```bash

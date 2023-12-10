@@ -1,11 +1,11 @@
 # Erpnext
 
-![erpnext](/img/services-customer.png)
+![erpnext](img/services-customer.png)
 Picture from [erpnext.com](https://erpnext.com/)
 
 To keep in line with the instructions in the erpnext [helm repo](https://github.com/frappe/helm), we will be using helm and namespaces.
 
-Note, make sure [longhorn](/install-setup/#add-longhorn-optional) is installed. It is possible to avvoid it by pre-creating a local-storage pvc and referencing it in `erpnext_values`, but for testing I found it easier to install longhorn and reference it as storageClass instead. This way you will have RWX (the volume cna be mounted as read-write by many nodes) compatible volumes ready for scaling as well.
+Note, make sure [longhorn](install-setup.md/#add-longhorn-optional) is installed. It is possible to avvoid it by pre-creating a local-storage pvc and referencing it in `erpnext_values`, but for testing I found it easier to install longhorn and reference it as storageClass instead. This way you will have RWX (the volume cna be mounted as read-write by many nodes) compatible volumes ready for scaling as well.
 
 ## Add repo
 
@@ -225,4 +225,4 @@ password: `secret`
 
 ### Enjoy
 
-![erpnext](/img/erpnext-login.png)
+![erpnext](img/erpnext-login.png)

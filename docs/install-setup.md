@@ -51,7 +51,7 @@ The first step is to configure one (or more) manager nodes.
 
 ## Get manifests / repo
 
-** Note: ** You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
+**Note**: You can just copy paste these manifests as you please, but to follow along with this guide, it is convenient to have them on disk.
 
 ```bash
 --8<-- "./scripts/git_clone_k3s.rocks.txt"
@@ -94,7 +94,7 @@ curl https://raw.githubusercontent.com/askblaker/k3s.rocks/main/manifests/traefi
 
 ## First master
 
-**Note:** Remember to have your environment variables set!
+**Note**: Remember to have your environment variables set!
 
 Not that we also alter the default deployment of the traefik ingress controller, see [helm chart values](https://github.com/traefik/traefik-helm-chart/blob/v9.18.3/traefik/values.yaml) for all the other options. Even K3S internally uses a helmchartconfig, changes can be applied with vanilla kubectl as we do here.
 
@@ -145,7 +145,7 @@ cat traefik-config.yaml | envsubst | kubectl apply -f -
 ```
 </details>
 
-** Note ** :
+**Note**:
 The traefik-config.yaml file could also be copied to `/var/lib/rancher/k3s/server/manifests/traefik-config.yaml` on one of the master nodes. K3S will run these files automatically. But this is optional, and not much help if you are using kubectl from outside the cluster.
 
 ```bash

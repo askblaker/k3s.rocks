@@ -1,7 +1,7 @@
 # Uptime Kuma
 
 
-[Uptime Kuma](uptime.kuma.pet) A awesome self-hosted monitoring tool.
+[Uptime Kuma](https://uptime.kuma.pet/) A awesome self-hosted monitoring tool.
 
 Apply the manifest.
 
