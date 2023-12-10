@@ -37,7 +37,7 @@ echo $USE_HOSTNAME > /etc/hostname
 hostname -F /etc/hostname
 ```
 
-**Note** : If you are not a `root` user, you might need to add `sudo` to these commands. The shell will tell you when you don't have enough permissions. Note that `sudo` does not preserve environment variables by default, but this can be enabled via the `-E` flag.
+**Note**: If you are not a `root` user, you might need to add `sudo` to these commands. The shell will tell you when you don't have enough permissions. Note that `sudo` does not preserve environment variables by default, but this can be enabled via the `-E` flag.
 
 - Install the latest updates, open-iscsi/nfs-common for longhorn and wireguard for security:
 
@@ -145,7 +145,7 @@ cat traefik-config.yaml | envsubst | kubectl apply -f -
 ```
 </details>
 
-** Note ** :
+**Note**:
 The traefik-config.yaml file could also be copied to `/var/lib/rancher/k3s/server/manifests/traefik-config.yaml` on one of the master nodes. K3S will run these files automatically. But this is optional, and not much help if you are using kubectl from outside the cluster.
 
 ```bash
