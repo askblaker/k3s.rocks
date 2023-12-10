@@ -68,7 +68,7 @@ spec:
 <details>
 <summary>traefik-config.yaml</summary>
 ```
---8<-- "./manifests/traefik-config.yml"
+--8<-- "./manifests/traefik-config.yaml"
 ```
 </details>
 
