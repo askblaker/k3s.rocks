@@ -4,7 +4,7 @@ metadata:
   name: traefik-ingress
   namespace: kube-system
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
     traefik.ingress.kubernetes.io/router.middlewares: default-my-basic-auth@kubernetescrd
 spec:
   rules:

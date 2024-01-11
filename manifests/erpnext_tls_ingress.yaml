@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: erpnext-tls-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd, default-replace-host@kubernetescrd
 spec:

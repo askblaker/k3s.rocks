@@ -44,7 +44,7 @@ kind: Ingress
 metadata:
   name: registry-ui-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
     # use this if you want basic auth on the UI
     # you have to use the registry credential any way

@@ -61,7 +61,7 @@ kind: Ingress
 metadata:
   name: postgres-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
 spec:
   rules:
   - host: postgres.${DOMAIN}

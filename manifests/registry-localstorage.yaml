@@ -42,7 +42,7 @@ kind: Ingress
 metadata:
   name: registry-ingress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-registry-cors@kubernetescrd, default-registry-basic-auth@kubernetescrd
 spec:
