@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: technitium
-          image: technitium/dns-server:11.1.1
+          image: technitium/dns-server:13.4.3
           volumeMounts:
             - name: technitium-volume
               mountPath: /etc/dns
@@ -56,4 +56,5 @@ spec:
       protocol: TCP
   selector:
     app: technitium
+  externalTrafficPolicy: Local
   type: LoadBalancer
