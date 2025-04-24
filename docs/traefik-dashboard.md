@@ -32,7 +32,7 @@ cat traefik-dashboard-ingress.yaml | envsubst | kubectl apply -f -
 ```
 </details>
 
-Now it should be available at http://traefik.dog.example.com/dashboard/ (note the trailing slash!).
+Now it should be available at http://traefik.example.com/dashboard/ (note the trailing slash!).
 
 ## Old method, using cert-manager
 
@@ -48,7 +48,7 @@ Traefik does not support using cert-manager for tls. So when using ingressroute 
 cat traefik-dashboard-tmp-ingress.yaml | envsubst | kubectl apply -f -
 ```
 
-- Wait until you are able to access <a href="https://traefik.dog.example.com" target="_blank">https://traefik.dog.example.com</a> without errors or warnings about certificate.
+- Wait until you are able to access <a href="https://traefik.example.com" target="_blank">https://traefik.example.com</a> without errors or warnings about certificate.
 - Then delete it
 
 ```bash
@@ -63,4 +63,4 @@ cat traefik-ingressroute-no-auth.yaml | envsubst | kubectl apply -f -
 
 # Done
 
-Now you should have the traefik dashboard available on <a href="https://traefik.dog.example.com" target="_blank">https://traefik.dog.yourdomain.com</a>
+Now you should have the traefik dashboard available on <a href="https://traefik.example.com" target="_blank">https://traefik.yourdomain.com</a>

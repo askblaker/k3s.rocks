@@ -11,7 +11,7 @@ First, Follow the steps in [first-deploy](first-deploy.md)
 - Apply the manifest
 
 ```bash
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.11.0/cert-manager.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml
 ```
 
 - Wait until all pods are ready
@@ -68,8 +68,10 @@ cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
 
 ## Test
 
-point your browser to <a href="https://echo.dog.example.com" target="_blank">https://echo.dog.example.com</a> . (It might be a few minutes until certificates are ready). You should get a 200 response, and a simple response of "echo1" showing in the webpage. You should now see your whoami service served with a fresh https certificate.
+point your browser to <a href="https://whoami.example.com" target="_blank">https://whoami.example.com</a> . (It might be a few minutes until certificates are ready). You should get a 200 response, and a simple response of "echo1" showing in the webpage. You should now see your whoami service served with a fresh https certificate.
 
 ## Troubleshooting
 
 Se cert-managers official <a href="https://cert-manager.io/docs/faq/acme/" target="_blank">trouble shooting guide</a>
+
+Basically you will do kubectl get/describe following CRDs: issuer, clusterissuer, certificaterequest, order.
