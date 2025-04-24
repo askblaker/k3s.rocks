@@ -68,7 +68,7 @@ cat ./whoami/whoami-ingress-tls.yaml | envsubst | kubectl apply -f -
 
 ## Test
 
-point your browser to <a href="https://whoami.example.com" target="_blank">https://whoami.example.com</a> . (It might be a few minutes until certificates are ready). You should get a 200 response, and a simple response of "echo1" showing in the webpage. You should now see your whoami service served with a fresh https certificate.
+point your browser to <a href="https://whoami.example.com/foo" target="_blank">https://whoami.example.com/foo</a> . (It might be a few minutes until certificates are ready). You should get a 200 response, and a simple response of "echo1" showing in the webpage. You should now see your whoami service served with a fresh https certificate.
 
 ## Troubleshooting
 

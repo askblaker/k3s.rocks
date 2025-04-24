@@ -34,9 +34,7 @@ cat traefik-dashboard-ingress.yaml | envsubst | kubectl apply -f -
 
 Now it should be available at http://traefik.example.com/dashboard/ (note the trailing slash!).
 
-## Old method, using cert-manager
-
-#### Create https certificate for ingressroute
+## Create https certificate
 
 Traefik does not support using cert-manager for tls. So when using ingressroute with https you need to first create a "fake" ingress to get a secret with the desired name. Then you use that secret like below.
 
@@ -49,7 +47,11 @@ cat traefik-dashboard-tmp-ingress.yaml | envsubst | kubectl apply -f -
 ```
 
 - Wait until you are able to access <a href="https://traefik.example.com" target="_blank">https://traefik.example.com</a> without errors or warnings about certificate.
-- Then delete it
+
+## Replace with ingressroute (OPTIONAL)
+Even if traefik does not support using cert-bot to manage certificates, we can work around using a regular ingress that we delete. This is optional. See next page to add basic auth to the dashboard.
+
+- Delete the original imp ingress
 
 ```bash
 cat traefik-dashboard-tmp-ingress.yaml | envsubst | kubectl delete -f -

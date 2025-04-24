@@ -85,7 +85,16 @@ X-Real-Ip: 10.42.0.1
 
 ## Adding HTTPS
 
-The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd`
+The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also add/remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd` in any ingress using this middleware like this:
+
+```yml
+metadata:
+  name: erpnext-tls-ingress
+  annotations:
+    spec.ingressClassName: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+```
 
 ```bash
 --8<-- "./scripts/apply_traefik_redirect_middleware.txt"
