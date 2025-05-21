@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: ghost
-          image: ghost:5.32.0
+          image: ghost:5.118.0
           # prettier-ignore
           env:
           - name: database__client

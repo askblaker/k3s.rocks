@@ -26,7 +26,8 @@ spec:
     #    maxUnavailable: 2
     #    maxSurge:
 
-    #additionalArguments:
+    additionalArguments:
+    - "--api.insecure=true"
     #  - "--entryPoints.web.proxyProtocol.insecure"
     #  - "--entryPoints.websecure.proxyProtocol.insecure"
     #  - "--entryPoints.web.proxyProtocol.trustedIPs=123.123.123.123"

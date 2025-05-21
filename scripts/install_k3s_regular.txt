@@ -1,4 +1,4 @@
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.28.3+k3s2 sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.3+k3s1 sh -s server \
 --cluster-init \
 --flannel-backend=wireguard-native \
 --write-kubeconfig-mode 644 && \

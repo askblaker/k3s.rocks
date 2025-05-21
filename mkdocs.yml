@@ -37,11 +37,9 @@ nav:
 
 
 markdown_extensions:
-  - markdown.extensions.codehilite:
-      guess_lang: false
+  - pymdownx.highlight
+  - pymdownx.superfences 
   - markdown_include.include:
       base_path: docs
   - pymdownx.snippets
   - admonition
-  - codehilite
-  - extra

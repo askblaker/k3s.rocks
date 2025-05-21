@@ -34,19 +34,6 @@ cat basic-auth-middleware.yaml | envsubst | kubectl apply -f -
 
 Depending on if you are using Ingressroute or Ingress you can add the middleware.
 
-### Traefik Ingressroute
-
-```bash
-cat traefik-ingressroute.yaml | envsubst | kubectl apply -f -
-```
-
-<details>
-<summary>traefik-ingressroute.yaml</summary>
-```
---8<-- "./manifests/traefik-ingressroute.yaml"
-```
-</details>
-
 ### Ingress
 
 **Note: ** The middleware is prefixed with the namespace, in this case default.
@@ -61,6 +48,20 @@ cat traefik-dashboard-ingress-basic-auth.yaml | envsubst | kubectl apply -f -
 --8<-- "./manifests/traefik-dashboard-ingress-basic-auth.yaml"
 ```
 </details>
+
+### Traefik Ingressroute
+
+```bash
+cat traefik-ingressroute.yaml | envsubst | kubectl apply -f -
+```
+
+<details>
+<summary>traefik-ingressroute.yaml</summary>
+```
+--8<-- "./manifests/traefik-ingressroute.yaml"
+```
+</details>
+
 
 ## Test it
 

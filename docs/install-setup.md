@@ -125,7 +125,7 @@ export NODE_INTERNAL_IP=192.168.0.1
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.28.3+k3s2 sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.3+k3s1 sh -s server \
 --cluster-init \
 --flannel-backend=wireguard-native \
 --node-external-ip=${NODE_EXTERNAL_IP}  \
@@ -140,7 +140,7 @@ cat traefik-config.yaml | envsubst | kubectl apply -f -
 
 <details>
 <summary>traefik-config.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/traefik-config.yaml"
 ```
 </details>
@@ -183,7 +183,7 @@ export MASTER_IP=<master node IP>
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.28.3+k3s2 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.3+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
 --flannel-backend=wireguard-native \
 --server https://${MASTER_IP}:6443
 ```
@@ -205,7 +205,7 @@ export NODE_INTERNAL_IP=192.168.0.1
 ```
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.28.3+k3s2 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.3+k3s1 K3S_TOKEN="${K3S_TOKEN}" sh -s server \
 --flannel-backend=wireguard-native \
 --server https://${MASTER_IP}:6443 \
 --node-external-ip=${NODE_EXTERNAL_IP}  \
@@ -231,7 +231,7 @@ export MASTER_IP=<master node IP>
 Regular internet facing install:
 
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.28.3+k3s2 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.3+k3s1 K3S_TOKEN="${K3S_TOKEN}" K3S_URL=https://${MASTER_IP}:6443 sh -
 ```
 
 <details>

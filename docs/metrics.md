@@ -15,23 +15,23 @@ helm repo update
 * Install / Deploy it with helm
 ```bash
 # For new install
-helm install prometheus-stack --version 35.3.1 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
+helm install prometheus-stack --version 72.5.3 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
 ```
 ```bash
 # Or e.g. after updating values
-helm upgrade prometheus-stack --version 35.3.1 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
+helm upgrade prometheus-stack --version 72.5.3 -f prometheus-values.yaml prometheus-community/kube-prometheus-stack
 ```
 
 ## Ingresses
-* Alertmanager (alert-manager.dog.example.com)
+* Alertmanager (alert-manager.example.com)
 ```bash
 cat alert-manager-ingress.yaml | envsubst | kubectl apply -f -
 ```
-* Prometheus (prometheus.dog.example.com)
+* Prometheus (prometheus.example.com)
 ```bash
 cat prometheus-ingress.yaml | envsubst | kubectl apply -f -
 ```
-* Grafana (grafana.dog.example.com)
+* Grafana (grafana.example.com)
 ```bash
 cat grafana-ingress.yaml | envsubst | kubectl apply -f -
 ```
@@ -53,4 +53,4 @@ kubectl apply -f traefik-dashboard.yaml
 
 ## Done 
 * Check alert-manager, prometheus or grafana to see how it looks
-<a href="http://grafana.dog.example.com" target="_blank">http://grafana.dog.example.com</a>
+<a href="http://grafana.example.com" target="_blank">http://grafana.example.com</a>

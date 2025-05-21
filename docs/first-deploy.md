@@ -12,7 +12,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 <details>
 <summary>whoami-deployment.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-deployment.yaml"
 ```
 </details>
@@ -25,7 +25,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 <details>
 <summary>whoami-service.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-service.yaml"
 ```
 </details>
@@ -38,7 +38,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 <details>
 <summary>whoami-ingress.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-ingress.yaml"
 ```
 </details>
@@ -57,37 +57,44 @@ Here we applied deployment, service and ingress separately. Sometimes this makes
 
 ### Time to test
 
-Use your browser curl to check <a href="https://example.com/foo" target="_blank">http://example.com/foo</a>
+Use your browser curl to check <a href="http://dog.example.com/foo" target="_blank">http://example.com/foo</a>. Alternatively <a href="http://your-public-ip/foo" target="_blank">http://your-public-ip/foo</a>
 
 ```bash
-curl http://example.com/foo
+curl http://your-public-ip/foo
 ```
 
 ```bash
-Hostname: whoami-667fc988f6-jn5f8
+Hostname: whoami-946657448-2xhtv
 IP: 127.0.0.1
 IP: ::1
-IP: 10.42.0.34
-IP: dd40::402e:d1ff:bde4:b8db
-RemoteAddr: 10.42.0.1:33686
-GET /bar HTTP/1.1
-Host: 12.344.200.233
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
-Accept-Encoding: gzip, deflate
-Accept-Language: en-US,en;q=0.9
-Upgrade-Insecure-Requests: 1
-X-Forwarded-For: 11.255.13.126
-X-Forwarded-Host: 51.114.111.153
+IP: 10.42.0.9
+IP: fe80::7081:fcff:feaf:af05
+RemoteAddr: 10.42.0.8:35284
+GET /foo HTTP/1.1
+Host: 123.345.123.345
+User-Agent: curl/7.81.0
+Accept: */*
+Accept-Encoding: gzip
+X-Forwarded-For: 10.42.0.1
+X-Forwarded-Host: 123.345.123.345
 X-Forwarded-Port: 80
 X-Forwarded-Proto: http
-X-Forwarded-Server: m1
-X-Real-Ip: 23.251.11.124
+X-Forwarded-Server: traefik-5f77ff7779-s7fh9
+X-Real-Ip: 10.42.0.1
 ```
 
 ## Adding HTTPS
 
-The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd`
+The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also add/remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd` in any ingress using this middleware like this:
+
+```yaml
+metadata:
+  name: erpnext-tls-ingress
+  annotations:
+    spec.ingressClassName: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+```
 
 ```bash
 --8<-- "./scripts/apply_traefik_redirect_middleware.txt"
@@ -115,7 +122,7 @@ Then you can apply the ingress.
 
 <details>
 <summary>whoami-ingress-tls.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-ingress-tls.yaml"
 ```
 </details>
