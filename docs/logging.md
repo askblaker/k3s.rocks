@@ -1,12 +1,12 @@
 ## Logging
-Since we already are relying on grafana for metrics, it is conveniant to use Loki for logging.
+Since we already are relying on grafana for metrics, it is convenient to use Loki for logging.
 ![Loki](img/loki.webp)
 
 ### Install loki
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts && \
 helm repo update && \
-helm upgrade --install loki grafana/loki-stack  
+helm upgrade --install loki grafana/loki-stack --version 2.10.2  
 ```
 
 ### Add Loki as datasource

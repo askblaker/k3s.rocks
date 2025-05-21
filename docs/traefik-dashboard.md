@@ -62,6 +62,12 @@ cat traefik-dashboard-tmp-ingress.yaml | envsubst | kubectl delete -f -
 ```bash
 cat traefik-ingressroute-no-auth.yaml | envsubst | kubectl apply -f -
 ```
+<details>
+<summary>traefik-ingressroute-no-auth.yaml</summary>
+```
+--8<-- "./manifests/traefik-ingressroute-no-auth.yaml"
+```
+</details>
 
 # Done
 
