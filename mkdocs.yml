@@ -37,9 +37,9 @@ nav:
 
 
 markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences 
   - markdown_include.include:
       base_path: docs
   - pymdownx.snippets
   - admonition
-  - codehilite
-  - extra

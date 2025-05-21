@@ -10,6 +10,9 @@
 ssh root@172.173.174.175
 ```
 
+``` py
+import tensorflow as tf
+```
 - Define a server name using a subdomain of a domain you own, for example `dog.yourdomain.com`.
 - Make sure the subdomain DNS records point to your VPS's IP address. Either all the desired subdomains, or use a wildcard. An A record from \*.dog.example.com to the VPS IP would work.
 - Create a temporary environment variable with the name of the host to be used later, we will also set the email to be used with letsencrypt (using a fake/testing email here might cause it to fail) as well as the version of this guide.

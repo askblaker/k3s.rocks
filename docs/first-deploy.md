@@ -12,7 +12,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 <details>
 <summary>whoami-deployment.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-deployment.yaml"
 ```
 </details>
@@ -25,7 +25,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 <details>
 <summary>whoami-service.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-service.yaml"
 ```
 </details>
@@ -38,7 +38,7 @@ Apply deployment, service and ingress, using the commands below. This will deplo
 
 <details>
 <summary>whoami-ingress.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-ingress.yaml"
 ```
 </details>
@@ -87,7 +87,7 @@ X-Real-Ip: 10.42.0.1
 
 The examples below use http->https redirect using a traefik middleware. To utilize it you need to create it first. You can also add/remove it by removing the line ` traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd` in any ingress using this middleware like this:
 
-```yml
+```yaml
 metadata:
   name: erpnext-tls-ingress
   annotations:
@@ -122,7 +122,7 @@ Then you can apply the ingress.
 
 <details>
 <summary>whoami-ingress-tls.yaml</summary>
-```
+```yaml
 --8<-- "./manifests/whoami/whoami-ingress-tls.yaml"
 ```
 </details>
